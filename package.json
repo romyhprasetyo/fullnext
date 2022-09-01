@@ -6,15 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "knex": "knex"
   },
   "dependencies": {
+    "knex": "^2.2.0",
+    "mysql": "^2.18.1",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sqlite3": "^5.0.11"
   },
   "devDependencies": {
-    "eslint": "8.23.0",
+    "eslint": "8.22",
     "eslint-config-next": "12.2.5"
   }
 }
