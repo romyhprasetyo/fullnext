@@ -1,11 +1,11 @@
 import db from '../../../libs/db';
+import authorization from '../../../middlewares/authorization';
 
 export default async function handler(req, res){
 
-    //console.log(req.method);
     if(req.method!== 'POST') return res.status(405).end();
 
-    //console.log(req.body)
+    const auth = await authorization(req, res);
     const {title, content} = req.body;
 
     const create = await db('posts').insert({
