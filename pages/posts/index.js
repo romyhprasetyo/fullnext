@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import {authPage} from '../../middlewares/authorizationPage';
 import {server} from '../../config';
+import Router from 'next/router';
+import Navigation from '../../components/navigation';
 
 export async function getServerSideProps(ctx){
     //destructured
@@ -60,16 +62,22 @@ export default function PostsIndex(props){
             setPosts(postsFiltered);
         }
     }
+
+    async function editHandler(id, e){
+        Router.push('/posts/edit/'+ id);
+    }
     return(
         <div>
             <h1>Post Page</h1>
+            <Navigation/>
+
             {posts.map(post => {
                 return (
                     <div key={post.id}>
                         <h2>{post.title} - {post.id}</h2>
                         <p>{post.content}</p>
                         <div>
-                            <button>Edit</button>
+                            <button onClick={editHandler.bind(this, post.id)}>Edit</button>
                             <button onClick={deleteHandler.bind(this, post.id)}>Delete</button>
                         </div>
                         <hr/>

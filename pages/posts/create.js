@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {authPage} from '../../middlewares/authorizationPage';
 import Router from 'next/router';
+import Navigation from '../../components/navigation';
 
 export async function getServerSideProps(ctx){
     const {token} = await authPage(ctx);
@@ -36,7 +37,8 @@ export default function PostCreate(props){
         });
 
         const res = await create.json();
-        //if(!res.ok) return setStatus('error'+ res.status)
+
+        if(!create.ok) return setStatus('error'+ res.status)
 
         setStatus('Success');
         Router.push('/posts');
@@ -55,6 +57,7 @@ export default function PostCreate(props){
     return(
         <div>
             <h1>Create a Post</h1>
+            <Navigation/>
             <form onSubmit={createHandler.bind(this)}>
                 <input
                     onChange={fieldHanlder.bind(this)}
