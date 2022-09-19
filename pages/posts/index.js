@@ -1,3 +1,12 @@
+import {authPage} from '../../middlewares/authorizationPage';
+
+export async function getServerSideProps(ctx){
+    const auth = await authPage(ctx);
+
+    return {
+        props : {}
+    }
+}
 export default function PostsIndex(){
     return(
         <div>
