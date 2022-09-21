@@ -15,7 +15,7 @@ export default function authorization(req, res){
         if(authType !== 'Bearer') return res.status(401).end();
 
         //verify using callback function
-        return jwt.verify(authToken, 'yourmom', function (err, decoded){
+        return jwt.verify(authToken, process.env.JWT_SECRET, function (err, decoded){
             if(err) return res.status(401).end();
 
             return resolve(decoded);
